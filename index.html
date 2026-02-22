@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+/* AnaSayfa dönüş ve Google link butonları sm button styles  */
+.twitter-btn {
+      position: fixed;
+      margin: auto;
+      bottom: 0;
+      background-color: #0072b1;
+      border: 0.35em solid #1da1f2;
+      border-left: none;
+      border-bottom: none;
+      border-radius: 0% 100% 0% 0%/0% 100% 0% 93%;
+      height: 85px;
+      width: 85px;
+      left: 0px;
+      cursor: pointer;
+      }
+.in-btn {
+      position: fixed;
+      margin: auto;
+      bottom: 0;
+      background-color: #0072b1;
+      border: 0.35em solid #1da1f2;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 100% 0% 0% 0%/100% 0% 0% 0%;
+      height: 85px;
+      width: 85px;
+      cursor: pointer;
+      right: 0;
+      }
+.twitter-btn:hover {
+      background-color: #FFBF00;
+      }
+.in-btn:hover {
+      background-color: #FFBF00;
+      }
+.fa-twitter {
+      position: center;
+      left: 0em;
+      right: 0.4em;
+      top: 0.5em;
+      bottom: 0;
+      color: #FF3131;
+      font-size: 1.4em;
+      }
+.fa-linkedin-in {
+      position: center;
+      left: 0.4em;
+      right: 0em;
+      top: 0.55em;
+      bottom: 0;
+      color: #FF3131;
+      font-size: 1.4em;
+      }
+</style>
+<style>
+main {
+        position: fixed;   /* static  relative  fixed  absolute  sticky */
+        border: 3px solid blue;
+        border-radius: 0px 10px 0px 0px;
+        left: 1180px;
+        top:16px;
+        width: 250px;
+        height: 200px;
+        padding: 50px;
+        background-image: linear-gradient(135deg, white, cyan, white);
+        }
+#example-element {
+        width: 100px;
+        height: 100px;
+        transform-style: preserve-3d;
+        transition: transform 1.5s;
+        transform: rotate3d(1, 1, 1, -30deg);
+        }
+.face {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        backface-visibility: inherit;
+        font-size: 60px;
+        color: #fff;
+        }
+.front {
+       /* background: rgba(90,90,90,.7);*/
+        background: url('m01.jpg') no-repeat;
+        transform: translateZ(50px);
+        }
+.back {
+        background: rgba(0,210,0,.7);background: url('static/img/rose1.jpg') no-repeat;
+        transform: rotateY(180deg) translateZ(50px);
+        }
+.right {
+        background: rgba(210,0,0,.7);
+        transform: rotateY(90deg) translateZ(50px);
+        }
+.left {
+        background: rgba(0,0,210,.7);
+        transform: rotateY(-90deg) translateZ(50px);
+        }
+.top {
+        background: rgba(210,210,0,.7);
+        transform: rotateX(90deg) translateZ(50px);
+        }
+.bottom {
+        background: rgba(210,0,210,.7);
+        transform: rotateX(-90deg) translateZ(50px);
+        }
+.select-form {
+        margin-top: 85px;
+        }
+</style>
+ <style>
+main1 {
+        position: fixed;   /* static  relative  fixed  absolute  sticky */
+        border: 3px solid blue;
+        border-radius: 10px 0px 0px 0px;
+        left: 15px;
+        top:16px;
+        width: 250px;
+        height: 200px;
+        padding: 50px;
+        background-image: linear-gradient(135deg, white, cyan, white);
+        }
+#example-element1 {
+        width: 100px;
+        height: 100px;
+        transform-style: preserve-3d;
+        transition: transform 1.5s;
+        transform: rotate3d(1, 1, 1, 30deg);
+        }
+.face1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        backface-visibility: inherit;
+        font-size: 60px;
+        color: #fff;
+        }
+.front1 {
+       /* background: rgba(90,90,90,.7);*/
+        background: url('a01.jpg') no-repeat;
+        transform: translateZ(50px);
+        }
+.back1 {
+        background: rgba(0,210,0,.7);background: url('static/img/rose1.jpg') no-repeat;
+        transform: rotateY(180deg) translateZ(50px);
+        }
+.right1 {
+        background: rgba(210,0,0,.7);
+        transform: rotateY(90deg) translateZ(50px);
+        }
+.left1 {
+        background: rgba(0,0,210,.7);
+        transform: rotateY(-90deg) translateZ(50px);
+        }
+.top1 {
+        background: rgba(210,210,0,.7);
+        transform: rotateX(90deg) translateZ(50px);
+        }
+.bottom1 {
+        background: rgba(210,0,210,.7);
+        transform: rotateX(-90deg) translateZ(50px);
+        }
+.select-form1 {
+        margin-top: 85px;
+        }
+</style>
+</head>
+<body>
+<div style="width: %100; height: 748px; background:#33AA99;background-color: lavender;border: double green; padding: 4px;">
+
+   <div style="position: fixed; border: 3px solid blue; border-radius: 10px ; left: 614px; top:16px; width: 355px; height: 40px; padding: 4px;
+         background-color: #cae8ca;">
+
+
+<button style="position: fixed; border: 2px solid #4CAF50; " onclick="displayDate()">The time is?</button><h4 style="position: fixed;" id="demo1" onclick="changeText(this)"></h4>
+   </div>
+
+<script>
+function displayDate() {
+  document.getElementById("demo1").innerHTML = Date();
+}
+</script>
+<script>
+function changeText(id) {
+  id.innerHTML = "";
+}
+</script>
+
+
+ <main>
+        <section id="example-element">
+            <div class="face front"></div>
+            <div class="face back">2</div>
+            <div class="face right">3</div>
+            <div class="face left">4</div>
+            <div class="face top">5</div>
+            <div class="face bottom">6</div>
+        </section>
+
+        <div class="select-form"  id="exam" >
+          <label>mySelect a transform function</label>
+
+          <select id="exam10" name="cars" autofocus>
+            <option selected>Choose a function</option>
+            <option>rotate(360deg)</option>
+            <option>rotateX(720deg)</option>
+            <option>rotateX(60deg)</option>
+            <option>rotateY(360deg)</option>
+            <option>rotateZ(360deg)</option>
+            <option>rotate3d(1, 1, 1, 90deg)</option>
+            <option>scale(11.5)</option>
+            <option>scaleX(31.5)</option>
+            <option>scaleY(21.5)</option>
+            <option>scaleZ(16.5)</option>
+            <option>scale3d(1, 1.5, 1.5)</option>
+            <option>skew(17deg, 13deg)</option>
+            <option>skewX(217deg)</option>
+            <option>skewY(117deg)</option>
+            <option>translate(250px, 300px)</option>
+            <option>translateX(190px)</option>
+            <option>translateY(1230px)</option>
+            <option>translateZ(100px)</option>
+            <option>translate3d(50px, 50px, 50px)</option>
+            <option>perspective(6px)</option>
+            <option>matrix(1, 2, -1, 1, 80, 80)</option>
+            <option>matrix3d(1,0,0,0,0,1,3,0,0,0,1,0,50,100,0,1.1)</option>
+          </select>
+        </div>
+      </main>
+
+
+<main1>
+        <section id="example-element1">
+            <div class="face1 front1"></div>
+            <div class="face1 back1">2</div>
+            <div class="face1 right1">3</div>
+            <div class="face1 left1">4</div>
+            <div class="face1 top1">5</div>
+            <div class="face1 bottom1">6</div>
+        </section>
+
+<div class="select-form1"  id="exam1">
+          <label>mySelect1 a transform function</label>
+
+              <select id="exam11">
+            <option selected>Choose a function</option>
+            <option>rotate(360deg)</option>
+            <option>rotateX(720deg)</option>
+            <option>rotateX(60deg)</option>
+            <option>rotateY(360deg)</option>
+            <option>rotateZ(360deg)</option>
+            <option>rotate3d(1, 1, 1, 90deg)</option>
+            <option>scale(11.5)</option>
+            <option>scaleX(31.5)</option>
+            <option>scaleY(21.5)</option>
+            <option>scaleZ(16.5)</option>
+            <option>scale3d(1, 1.5, 1.5)</option>
+            <option>skew(17deg, 13deg)</option>
+            <option>skewX(217deg)</option>
+            <option>skewY(117deg)</option>
+            <option>translate(250px, 300px)</option>
+            <option>translateX(190px)</option>
+            <option>translateY(1230px)</option>
+            <option>translateZ(100px)</option>
+            <option>translate3d(50px, 50px, 50px)</option>
+            <option>perspective(6px)</option>
+            <option>matrix(1, 2, -1, 1, 80, 80)</option>
+            <option>matrix3d(1,0,0,0,0,1,3,0,0,0,1,0,50,100,0,1.1)</option>
+        </select>
+</div>
+</main1>
+
+<div class="container">
+        <a href="/"><button class="twitter-btn" type="submit"><i class="fab fa-twitter">Ana Sayfa</i></button></a>
+        <a href="http://google.com"><button class="in-btn" type="submit"><i class="fab fa-linkedin-in">Google</i></button></a>
+</div>
+
+</div>
+
+<script>
+    /*transform function*/
+        document.getElementById("exam").style.color = "red";
+        document.getElementById("exam10").style.color = "green";
+
+        const divA = document.getElementById("exam");
+        const selectElem = divA.querySelector('select');
+        const example = document.querySelector('#example-element');
+        selectElem.addEventListener('change', () => {
+        if(selectElem.value === 'Choose a function') {
+        return;
+        } else {
+        example.style.transform = `rotate3d(1, 1, 1, -30deg) ${selectElem.value}`;
+        setTimeout(function() {
+        example.style.transform = 'rotate3d(1, 1, 1, -30deg)';
+        }, 2000)
+        }
+        })
+</script>
+<script>
+    /*transform function*/
+        document.getElementById("exam1").style.color = "red";
+        document.getElementById("exam11").style.color = "green";
+
+        const divB = document.getElementById("exam1");
+        const selectElem1 =divB.querySelector('select');
+        const example1 = document.querySelector('#example-element1');
+        selectElem1.addEventListener('change', () => {
+        if(selectElem1.value === 'Choose a function') {
+        return;
+        } else {
+        example1.style.transform = `rotate3d(1, 1, 1, 30deg) ${selectElem1.value}`;
+        setTimeout(function() {
+        example1.style.transform = 'rotate3d(1, 1, 1, 30deg)';
+        }, 2000)
+        }
+        })
+</script>
+<script>
+        var buttonk1 = document.querySelector('buttonk');
+        function random(number) {
+        return Math.floor(Math.random() * number)
+        }
+        buttonk1.onclick = function() {
+        var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        buttonk1.style.backgroundColor = rndCol;
+        }
+        buttonk1.onauxclick = function(e) {
+        e.preventDefault();
+        var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        buttonk1.style.color = rndCol;
+        }
+</script>
+</body>
+</html>
+
