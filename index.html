@@ -1,8 +1,84 @@
-
-
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
+<meta charset="UTF-8">
+<title>Stable Clock Analog</title>
+
+<style>
+
+
+#AnaKutu{
+margin-top:40px;
+background:#c9a5a5;
+padding:10px;
+border-radius:8px;
+max-width:750px;
+margin-left:auto;
+margin-right:auto;
+}
+
+body{
+background:#000;
+color:#00ffc8;
+font-family:Consolas;
+text-align:center;
+}
+
+/* DIGITAL */
+
+#clock{
+font-size:40px;
+margin-top:20px;
+}
+
+#date{
+margin-bottom:20px;
+}
+
+/* ANALOG */
+
+#analogBox{
+margin:20px;
+}
+
+svg{
+background:#111;
+border-radius:50%;
+box-shadow:0 0 15px #00ffc8;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:10px;
+max-width:700px;
+margin:auto;
+}
+
+.box{
+background:#111;
+padding:10px;
+border-radius:8px;
+}
+
+/* BORSA */
+
+#borsa{
+margin-top:20px;
+background:#111;
+padding:10px;
+border-radius:8px;
+max-width:700px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.open{color:#00ff88}
+.closed{color:#ff4444}
+
+</style>
 
 <style>
 /* AnaSayfa dönüş ve Google link butonları sm button styles  */
@@ -64,7 +140,7 @@ main {
         position: fixed;   /* static  relative  fixed  absolute  sticky */
         border: 3px solid blue;
         border-radius: 0px 10px 0px 0px;
-        left: 1180px;
+        left: 1305px;
         top:16px;
         width: 250px;
         height: 200px;
@@ -181,59 +257,193 @@ main1 {
 <body>
 <div style="width: %100; height: 748px; background:#33AA99;background-color: lavender;border: double green; padding: 4px;">
 
-   <div style="position: fixed; border: 3px solid blue; border-radius: 10px ; left: 614px; top:16px; width: 355px; height: 40px; padding: 4px;
-         background-color: #cae8ca;">
-    <button style="position: fixed; border: 2px solid #4CAF50; " onclick="displayDate()">The time is?</button><h4 style="position: fixed;" id="demo1" onclick="changeText(this)"></h4>
-    
-   </div>
+<div id="AnaKutu">
+<div id="clock"></div>
+<div id="date"></div>
 
-<div style="
-  position: fixed;
-  left: 620px;
-  top: 160px;
-  width: 355px;
-  height: 100px;
-  border: 6px solid red;
-  border-radius: 10px;
-  background-color: #000;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-">
+<div id="analogBox">
 
-  <button onclick="startClockLED()" style="
-    border: 2px solid #00ff00;
-    background-color: black;
-    color: #00ff00;
-    font-size: 13px;
-    margin-bottom: 5px;
-    cursor: pointer;
-  ">LED SAATİ BAŞLAT</button>
+<svg width="200" height="200">
 
-  <div id="clockLED" style="
-    font-family: Consolas, monospace;
-    font-size: 28px;
-    font-weight: bold;
-    color: #00ff00;
-    text-shadow:
-      0 0 5px #00ff00,
-      0 0 10px #00ff00,
-      0 0 20px #00ff00;
-  ">
-    00:00:00
-  </div>
+<circle cx="100" cy="100" r="90"
+stroke="#00ffc8"
+stroke-width="2"
+fill="none"/>
 
-  <div id="dateLED" style="
-    font-family: Consolas, monospace;
-    font-size: 14px;
-    color: #00ff00;
-  ">
-    00.00.0000
-  </div>
+<line id="hour"
+x1="100" y1="100"
+x2="100" y2="60"
+stroke="#00ffc8"
+stroke-width="6"
+stroke-linecap="round"/>
+
+<line id="minute"
+x1="100" y1="100"
+x2="100" y2="40"
+stroke="#00ffc8"
+stroke-width="4"
+stroke-linecap="round"/>
+
+<line id="second"
+x1="100" y1="100"
+x2="100" y2="30"
+stroke="#ff4444"
+stroke-width="2"
+stroke-linecap="round"/>
+
+</svg>
 
 </div>
+
+<div class="grid">
+
+<div class="box" id="tr"></div>
+<div class="box" id="lon"></div>
+<div class="box" id="kos"></div>
+<div class="box" id="utc"></div>
+<div class="box" id="ny"></div>
+<div class="box" id="tok"></div>
+
+</div>
+
+<div id="borsa"></div>
+</div>
+<script>
+
+/* ANALOG ROTATE */
+
+function rotate(el,deg){
+
+el.setAttribute(
+"transform",
+`rotate(${deg} 100 100)`
+);
+
+}
+
+function update(){
+
+const now = new Date();
+
+/* TIME PARTS */
+
+const h = now.getHours();
+const m = now.getMinutes();
+const s = now.getSeconds();
+const ms = now.getMilliseconds();
+
+/* DIGITAL WITH MILLISECOND */
+
+clock.innerHTML =
+h.toString().padStart(2,"0")+":"+
+m.toString().padStart(2,"0")+":"+
+s.toString().padStart(2,"0")+"."+
+ms.toString().padStart(3,"0");
+
+/* DATE */
+
+date.innerHTML =
+now.toLocaleDateString("tr-TR",{
+weekday:"long",
+day:"2-digit",
+month:"long",
+year:"numeric"
+});
+
+/* ANALOG SMOOTH */
+
+rotate(hour,(h%12)*30 + m*0.5);
+
+rotate(minute,m*6 + s*0.1);
+
+rotate(second,(s*6) + (ms*0.006));
+
+/* ZONES */
+
+const zones = {
+
+tr:["🇹🇷 Türkiye","Europe/Istanbul"],
+lon:["🇬🇧 London","Europe/London"],
+kos:["🇽🇰 Kosova","Europe/Belgrade"],
+utc:["🌍 UTC","UTC"],
+ny:["🇺🇸 New York","America/New_York"],
+tok:["🇯🇵 Tokyo","Asia/Tokyo"]
+
+};
+
+for(let id in zones){
+
+document.getElementById(id).innerHTML =
+zones[id][0] + "<br>" +
+now.toLocaleTimeString("tr-TR",{
+timeZone:zones[id][1],
+hour12:false
+});
+
+}
+
+/* BORSA */
+
+function openCheck(tz,start,end){
+
+const hour = parseInt(
+now.toLocaleTimeString("en-US",{
+timeZone:tz,
+hour:"2-digit",
+hour12:false
+})
+);
+
+return hour>=start && hour<end;
+
+}
+
+borsa.innerHTML =
+
+"🇹🇷 BIST: " +
+(openCheck("Europe/Istanbul",10,18) ?
+"<span class=open>AÇIK</span>" :
+"<span class=closed>KAPALI</span>")
+
++
+
+" | 🇬🇧 LSE: " +
+(openCheck("Europe/London",8,16) ?
+"<span class=open>AÇIK</span>" :
+"<span class=closed>KAPALI</span>")
+
++
+
+" | 🇺🇸 NYSE: " +
+(openCheck("America/New_York",9,16) ?
+"<span class=open>AÇIK</span>" :
+"<span class=closed>KAPALI</span>")
+
++
+
+" | 🇯🇵 TSE: " +
+(openCheck("Asia/Tokyo",9,15) ?
+"<span class=open>AÇIK</span>" :
+"<span class=closed>KAPALI</span>")
+
++
+
+" | 🇽🇰 KOSOVA: " +
+(openCheck("Europe/Belgrade",9,17) ?
+"<span class=open>AÇIK</span>" :
+"<span class=closed>KAPALI</span>")
+;
+
+}
+
+/* 60 FPS UPDATE */
+
+setInterval(update,16);
+
+update();
+
+</script>
+
 
 <script>
 
@@ -435,6 +645,11 @@ function changeText(id) {
         buttonk1.style.color = rndCol;
         }
 </script>
+
+
+
+
+
 </body>
 </html>
 
